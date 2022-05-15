@@ -23,14 +23,15 @@ class MyApp extends StatelessWidget {
 
         primarySwatch: Colors.teal,
       ),
-      home: const MyHomePage(),
+      home: MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatelessWidget {
-  const MyHomePage({Key? key}) : super(key: key);
-
+  // const MyHomePage({Key? key}) : super(key: key);
+  String? mailAddress;
+  String? password;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,8 +50,8 @@ class MyHomePage extends StatelessWidget {
                 ],
               ),
           ),
-          CustomTextField(label: "メールアドレス"),
-          CustomTextField(label: "パスワード"),
+          CustomTextField(label: "メールアドレス", onChangedfunc: (newText){mailAddress = newText;},isPassword: false,),
+          CustomTextField(label: "パスワード", onChangedfunc: (newText){password = newText;},isPassword: true,),
           Row(mainAxisAlignment: MainAxisAlignment.center,
             children: [Text("新規登録は"), TextButton(onPressed: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) => Registration()));
