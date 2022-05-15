@@ -45,8 +45,14 @@ class MyHomePage extends StatelessWidget {
           CustomTextField(label: "メールアドレス"),
           CustomTextField(label: "パスワード"),
           Row(mainAxisAlignment: MainAxisAlignment.center,
-            children: [Text("新規登録は"), TextButton(onPressed: () {}, child: Text("こちら"),)],
-          )
+            children: [Text("新規登録は"), TextButton(onPressed: () {}, child: Text("こちら"),)]),
+          ElevatedButton(
+              onPressed: (){},
+              child: Container(
+                  width: 200,
+                  height: 50,
+                  alignment: Alignment.center,
+                  child: Text("ログイン", textAlign: TextAlign.center,)))
         ],
       ),
     );
