@@ -1,7 +1,13 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:todo/firebase_options.dart';
 import 'package:todo/registration.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -64,9 +70,14 @@ class MyHomePage extends StatelessWidget {
 
 class CustomTextField extends StatelessWidget {
   String label;
+  void Function(String text) onChangedfunc;
+  bool isPassword;
 
   CustomTextField({
     required this.label,
+    required this.onChangedfunc,
+    required this.isPassword,
+
     Key? key,
   }) : super(key: key);
 
@@ -75,7 +86,10 @@ class CustomTextField extends StatelessWidget {
     return Padding(
         padding: const EdgeInsets.all(8.0),
         child: TextField(
-          onChanged: (newText){},
+          onChanged: (newText){
+            onChangedfunc(newText);
+          },
+          obscureText: isPassword? true : false,
           decoration: InputDecoration(
             labelText: label,
             border: OutlineInputBorder(
